@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Word Puzzle Demo</title>
+    <script type="module" crossorigin src="/assets/index-s8VdqMwO.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-eMkmv_MI.css">
+  </head>
+  <body>
+    <div id="app">
+      <main class="flex-column align-center" style="gap: 1rem">
+        <h2 style="align-self: flex-start;">Options</h2>
+        <div class="flex-column" style="width:100%">
+          <div class="flex-row align-start">
+            <label for="wordlist">Wordlist:</label>
+          </div>
+            <textarea id="wordlist"  type="textarea" placeholder="Type your wordlist here and seperate each word with a comma." rows="5">apple,banana,cherry,tomato,blueberry,lime,kiwi,pomegranate,starfruit</textarea>
+          <div class="grid flex-wrap">
+              <div class="flex-column align-start">
+                <label for="width">Width:</label>
+                <input id="width" type="number" value="11" max="40" min="3" />
+              </div>
+              <div class="flex-column align-start">
+                <label for="height">Height:</label>
+                <input id="height" type="number" value="11" max="40" min="3" />
+              </div>
+              <div class="flex-column align-start">
+                <label for="minWordLength">Minimum word length:</label>
+                <input id="minWordLength" type="number" value="3" min="3" />
+              </div>
+              <div class="flex-column align-start">
+                <label for="margin">Margin:</label>
+                <input id="margin" type="number" value="1" min="0" />
+              </div>
+              <div class="flex-column align-start">
+                <label for="reverseWordRatio">Reverse word ratio:</label>
+                <input id="reverseWordRatio" step="0.01" type="number" value="0.33" max="1" min="0" />
+              </div>
+              <div class="flex-column align-start">        
+                  <label for="listSize">List size:</label>
+                  <input id="listSize" type="number" value="" />
+              </div>
+              <div class="check flex-row justify-start align-center">
+                <input id="allowReverseWords" type="checkbox" checked />
+                <label for="allowReverseWords">Allow reverse words</label>
+              </div>
+              <div class="check flex-row justify-start align-center">
+                <input id="shareLetters" type="checkbox" checked />
+                <label for="shareLetters">Share letters</label>
+              </div>
+          </div>
+          <div style="width: 100%;" class="flex-row justify-start">
+            <button id="generate" class="btn">Generate</button>
+          </div>
+        </div>
+        <h2 style="align-self: flex-start;">Result</h2>
+        <div class="check flex-row justify-start align-center" style="width: 100%;">
+          <input id="showWords" type="checkbox" />
+          <label for="showWords">Show words</label>
+        </div>
+        <div id="grid"></div>
+        <h2 style="align-self: flex-start;">Object Output</h2>
+        <div id="puzzle" class="nested">
+            <ul class="nested"></ul>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
