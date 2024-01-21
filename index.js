@@ -1,4 +1,4 @@
-import './style.css';
+import './index.css';
 import createWordPuzzle from 'create-word-puzzle';
 
 (function () {
