@@ -41,21 +41,21 @@ import createWordPuzzle from 'create-word-puzzle';
         <table>
           <tbody>
         ${puzzle.grid
-          .map((row, x) => {
-            return `
+        .map((row, x) => {
+          return `
           <tr>
           ${row
-            .map((cell, y) => {
-              if (wordPoints[[x, y].join(',')]) {
-                return `<td class="word-point">${cell}</td>`;
-              }
-              return `<td>${cell}</td>`;
-            })
-            .join('')}
+              .map((cell, y) => {
+                if (wordPoints[[x, y].join(',')]) {
+                  return `<td class="word-point">${cell}</td>`;
+                }
+                return `<td>${cell}</td>`;
+              })
+              .join('')}
             </tr>
             `;
-          })
-          .join('')}
+        })
+        .join('')}
           </tbody>
         </table>
       </div>
@@ -97,6 +97,7 @@ import createWordPuzzle from 'create-word-puzzle';
     });
     console.log(puzzle);
     App(puzzle);
+    genarateNestedObjectElement(puzzle, document.getElementById('puzzle').querySelector('ul'));
   });
 
   showWords.addEventListener('change', (e) => {
@@ -117,9 +118,8 @@ import createWordPuzzle from 'create-word-puzzle';
         const id = `__${key}-${++idIndex}`;
         const ul = document.createElement('ul');
         ul.classList.add('nested');
-        ul.innerHTML = `<input class="nested-checkbox" id="${id}" type="checkbox" /><label class="key" for="${id}">${key}: </label><label for="${id}">(${
-          (Array.isArray(value) && value.length.toString()) || ''
-        }) ${JSON.stringify(value)}</label>`;
+        ul.innerHTML = `<input class="nested-checkbox" id="${id}" type="checkbox" /><label class="key" for="${id}">${key}: </label><label for="${id}">(${(Array.isArray(value) && value.length.toString()) || ''
+          }) ${JSON.stringify(value)}</label>`;
         appendTo.appendChild(ul);
         genarateNestedObjectElement(value, ul);
       } else {
@@ -129,10 +129,10 @@ import createWordPuzzle from 'create-word-puzzle';
           valueType === 'string'
             ? `<span class="string-value">"${value}"</span>`
             : valueType === 'number'
-            ? `<span class="number-value">${value}</span>`
-            : valueType === 'boolean'
-            ? `<span class="boolean-value">${value}</span>`
-            : `<span>${value}</span>`;
+              ? `<span class="number-value">${value}</span>`
+              : valueType === 'boolean'
+                ? `<span class="boolean-value">${value}</span>`
+                : `<span>${value}</span>`;
         li.innerHTML = `<span class="key">${key}: </span>${valueHtml}`;
         appendTo.appendChild(li);
       }
