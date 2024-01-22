@@ -1,11 +1,11 @@
 {
   "name": "demo-create-word-puzzle",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "homepage": "https://aacar947.github.io/demo-create-word-puzzle.io/",
   "scripts": {
-    "start": "vite --base ./",
+    "start": "vite --base ./ --publicDir ./dist",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
