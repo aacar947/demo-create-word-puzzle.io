@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://aacar947.github.io/demo-create-word-puzzle.io/",
   "scripts": {
-    "start": "vite",
+    "start": "vite --base ./",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",

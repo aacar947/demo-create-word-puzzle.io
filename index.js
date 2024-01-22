@@ -1,3 +1,4 @@
+import { clean } from 'gh-pages';
 import './index.css';
 import createWordPuzzle from 'create-word-puzzle';
 
@@ -139,5 +140,10 @@ import createWordPuzzle from 'create-word-puzzle';
     });
   }
 
+  function cleanObjectViwer() {
+    document.getElementById('puzzle').querySelector('ul').innerHTML = '';
+  }
+
+  cleanObjectViwer()
   genarateNestedObjectElement(puzzle, document.getElementById('puzzle').querySelector('ul'));
 })();
