@@ -108,20 +108,21 @@ showWords.addEventListener('change', (e) => {
   }
 });
 
-let idIndex = 0;
-function genarateNestedObjectElement(object, appendTo) {
+function genarateNestedObjectElement(object, appendTo, root = true) {
+  if (root) {
+    const ul = createObjectViewerRootElement("puzzle", object, appendTo);
+    genarateNestedObjectElement(object, ul, false);
+    return;
+  }
+
   const keys = (object && Object.keys(object)) || [];
+
   keys.forEach((key) => {
     const value = object[key];
     const type = typeof value;
     if (type === 'object') {
-      const id = `__${key}-${++idIndex}`;
-      const ul = document.createElement('ul');
-      ul.classList.add('nested');
-      ul.innerHTML = `<input class="nested-checkbox" id="${id}" type="checkbox" /><label class="key" for="${id}">${key}: </label><label for="${id}">(${(Array.isArray(value) && value.length.toString()) || ''
-        }) ${JSON.stringify(value)}</label>`;
-      appendTo.appendChild(ul);
-      genarateNestedObjectElement(value, ul);
+      const ul = createObjectViewerRootElement(key, value, appendTo);
+      genarateNestedObjectElement(value, ul, false);
     } else {
       const li = document.createElement('li');
       const valueType = typeof value;
@@ -137,6 +138,17 @@ function genarateNestedObjectElement(object, appendTo) {
       appendTo.appendChild(li);
     }
   });
+}
+
+let idIndex = 0;
+function createObjectViewerRootElement(key, value, parent) {
+  const id = `__${key}-${++idIndex}`;
+  const ul = document.createElement('ul');
+  ul.classList.add('nested');
+  ul.innerHTML = `<input class="nested-checkbox" id="${id}" type="checkbox" /><label class="key" for="${id}">${key && key + ":"} </label><label for="${id}">${(Array.isArray(value) && "(" + value.length + ")") || ''
+    } ${JSON.stringify(value)}</label>`;
+  parent.appendChild(ul);
+  return ul;
 }
 
 function cleanObjectViwer() {
